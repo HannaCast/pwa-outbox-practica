@@ -1,11 +1,6 @@
-/*
- * Service Worker del App Shell y del motor Background Sync.
- * No existe window ni document en este hilo: la UI se entera por postMessage.
- */
-
 importScripts('./db-helper.js');
 
-const CACHE_STATIC_NAME = 'static-outbox-v2';
+const CACHE_STATIC_NAME = 'static-outbox-v7';
 const STATIC_FILES = [
   './',
   './index.html',
@@ -118,7 +113,6 @@ self.addEventListener('sync', (event) => {
       sincronizarPendientesSW()
         .catch((error) => {
           console.error('[SW-Sync] Falla en sincronización; el navegador reintentará luego:', error);
-          // Relanzar el error pide al navegador que vuelva a disparar sync más tarde.
           throw error;
         })
     );

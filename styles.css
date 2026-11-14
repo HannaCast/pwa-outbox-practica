@@ -1,122 +1,69 @@
-:root {
-  --ink: #1c1915;
-  --muted: #5e584e;
-  --paper: #f3efe6;
-  --card: #fffdf8;
-  --line: #ddd4c4;
-  --pine: #1f4f3a;
-  --pine-deep: #1e2a24;
-  --online: #1f6b4a;
-  --offline: #9a3412;
-  --pending: #8a5a12;
-  --shadow: 0 16px 40px rgba(48, 38, 22, 0.08);
-}
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(212, 146, 42, 0.16), transparent 28%),
-    var(--paper);
-  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: #222;
+  background: #f7f7f7;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
-  padding: 28px 7vw 22px;
-  color: #f6f1e7;
-  background: var(--pine-deep);
-}
-
-.eyebrow {
-  margin: 0 0 6px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-  color: #d7c4a1;
-}
-
-h1, h2 {
+h2 {
   margin: 0;
-  font-weight: 650;
-  letter-spacing: -0.03em;
-}
-
-h1 {
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 main {
-  width: min(860px, calc(100% - 32px));
-  margin: -18px auto 40px;
+  width: min(720px, calc(100% - 24px));
+  margin: 20px auto 32px;
   display: grid;
   gap: 16px;
 }
 
 .card {
-  padding: 22px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-}
-
-h2 {
-  font-size: 1.15rem;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 form {
   display: grid;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 label {
-  font-size: 0.82rem;
-  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 input, textarea {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px 14px;
-  background: #fff;
-  color: var(--ink);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
   font: inherit;
 }
 
 textarea {
-  min-height: 110px;
+  min-height: 90px;
   resize: vertical;
-}
-
-input:focus, textarea:focus, button:focus-visible {
-  outline: 3px solid rgba(31, 107, 74, 0.25);
-  border-color: var(--online);
 }
 
 button {
   border: 0;
-  border-radius: 999px;
-  padding: 12px 16px;
+  border-radius: 6px;
+  padding: 10px 14px;
   font: inherit;
-  font-weight: 650;
   cursor: pointer;
 }
 
 button[type="submit"] {
-  margin-top: 8px;
   color: #fff;
-  background: var(--pine);
+  background: #222;
 }
 
 button:disabled {
@@ -126,8 +73,8 @@ button:disabled {
 
 .estado {
   min-height: 1.2em;
-  margin: 14px 0 0;
-  color: var(--muted);
+  margin: 12px 0 0;
+  color: #555;
 }
 
 .header-lista {
@@ -138,95 +85,61 @@ button:disabled {
 }
 
 #btn-purgar {
-  color: var(--pine-deep);
-  background: #efe6d4;
-}
-
-.badge {
-  flex: none;
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.badge.online {
-  color: #e8fff3;
-  background: var(--online);
-}
-
-.badge.offline {
-  color: #fff4ed;
-  background: var(--offline);
+  color: #222;
+  background: #eee;
 }
 
 #lista-outbox {
   list-style: none;
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
-.item, .vacio {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fcfaf5;
-}
-
-.vacio {
-  color: var(--muted);
+.item {
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: #fafafa;
 }
 
 .item-top {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .item-desc, .item-meta {
-  margin: 8px 0 0;
-}
-
-.item-desc {
-  line-height: 1.45;
+  margin: 6px 0 0;
 }
 
 .item-meta {
-  color: var(--muted);
-  font-family: "SFMono-Regular", ui-monospace, monospace;
-  font-size: 0.78rem;
+  color: #666;
+  font-size: 0.85rem;
 }
 
 .chip {
-  flex: none;
-  border-radius: 999px;
-  padding: 4px 8px;
+  border-radius: 6px;
+  padding: 3px 8px;
   font-size: 0.75rem;
-  font-weight: 750;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-weight: 700;
 }
 
 .chip.pendiente {
-  color: var(--pending);
-  background: #f8e7c4;
+  color: #664d03;
+  background: #fff3cd;
 }
 
 .chip.sincronizado {
-  color: var(--online);
-  background: #d9f3e6;
+  color: #0f5132;
+  background: #d1e7dd;
 }
 
 @media (max-width: 680px) {
-  header, .header-lista, .item-top {
+  .header-lista, .item-top {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  main {
-    margin-top: 16px;
   }
 }

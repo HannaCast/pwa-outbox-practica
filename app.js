@@ -1,9 +1,3 @@
-/*
- * Interfaz de la bandeja de salida.
- * El reenvío principal vive en sw.js (Background Sync).
- * Este archivo solo reintenta si el navegador no tiene SyncManager.
- */
-
 const ENDPOINT_REPORTES = 'https://jsonplaceholder.typicode.com/posts';
 
 if ('serviceWorker' in navigator) {
@@ -22,17 +16,6 @@ if ('serviceWorker' in navigator) {
       renderizarColaOutbox();
     }
   });
-}
-
-function actualizarIndicadorRed() {
-  const badge = document.getElementById('badge-red');
-  if (navigator.onLine) {
-    badge.textContent = 'En Línea';
-    badge.className = 'badge online';
-  } else {
-    badge.textContent = 'Sin Red';
-    badge.className = 'badge offline';
-  }
 }
 
 function mostrarEstado(mensaje) {
@@ -55,10 +38,6 @@ function renderizarColaOutbox() {
       lista.textContent = '';
 
       if (!registros.length) {
-        const vacio = document.createElement('li');
-        vacio.className = 'vacio';
-        vacio.textContent = 'La bandeja está vacía. Los reportes locales aparecerán aquí.';
-        lista.appendChild(vacio);
         return;
       }
 
@@ -224,7 +203,7 @@ function conectarFormulario() {
       .then((estado) => {
         form.reset();
         if (estado === 'pendiente') {
-          mostrarEstado('Sin red: el reporte quedó pendiente en IndexedDB.');
+          mostrarEstado('Sin red: el reporte quedó pendiente.');
         } else {
           mostrarEstado('Reporte enviado. Quedó registrado como sincronizado.');
         }
@@ -240,14 +219,13 @@ function conectarFormulario() {
 }
 
 function iniciar() {
-  actualizarIndicadorRed();
   conectarFormulario();
 
   document.getElementById('btn-purgar').addEventListener('click', () => {
     purgarSincronizados();
   });
 
-  // Esta lectura es la que recupera la cola al abrir la página, con o sin red.
+
   renderizarColaOutbox()
     .then(() => {
       if (navigator.onLine && !('SyncManager' in window)) {
@@ -257,16 +235,10 @@ function iniciar() {
 }
 
 window.addEventListener('online', () => {
-  actualizarIndicadorRed();
-
-  // Solo el hilo de la página sincroniza si no existe Background Sync.
-  // En Chrome lo hace sw.js, para no mandar el mismo POST dos veces.
   if (!('SyncManager' in window)) {
     console.log('[Outbox] Navegador sin SyncManager. Ejecutando fallback por evento online...');
     sincronizarPendientesFallback();
   }
 });
-
-window.addEventListener('offline', actualizarIndicadorRed);
 
 document.addEventListener('DOMContentLoaded', iniciar);
