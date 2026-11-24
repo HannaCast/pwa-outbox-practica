@@ -25,6 +25,36 @@
     </section>
 
     <section class="card">
+      <h2>Ubicación del reporte</h2>
+      <p class="ayuda">
+        Se adjunta al siguiente reporte. La página no pide la ubicación al abrirse.
+      </p>
+      <button id="btn-adjuntar-ubicacion" type="button">Adjuntar mi ubicación</button>
+      <div id="aviso-permiso-geo" class="aviso" hidden>
+        <p>
+          Necesitamos tu ubicación aproximada para adjuntar las coordenadas al reporte técnico.
+          El navegador preguntará después de este aviso. Si no quieres compartirla, podrás elegir la zona a mano.
+        </p>
+        <button id="btn-confirmar-ubicacion" type="button">Compartir mi ubicación</button>
+      </div>
+      <div id="resultado-ubicacion" hidden></div>
+      <div id="selector-zona-manual" hidden>
+        <p id="ayuda-zona-manual" class="ayuda"></p>
+        <label for="zona-manual">Zona o ciudad</label>
+        <select id="zona-manual">
+          <option value="">Elige una zona</option>
+          <option value="cdmx">Ciudad de México</option>
+          <option value="gdl">Guadalajara</option>
+          <option value="mty">Monterrey</option>
+          <option value="pue">Puebla</option>
+          <option value="qro">Querétaro</option>
+        </select>
+        <button id="btn-usar-zona" type="button">Usar esta zona</button>
+      </div>
+      <p id="estado-geo" class="estado" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
       <div class="header-lista">
         <h2>Bandeja de Salida</h2>
         <button id="btn-purgar" type="button">Eliminar</button>
@@ -67,6 +97,7 @@
   </main>
 
   <script src="./db-helper.js"></script>
+  <script src="./geo-helper.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

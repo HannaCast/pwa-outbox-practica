@@ -1,11 +1,12 @@
 importScripts('./db-helper.js');
 
-const CACHE_STATIC_NAME = 'static-outbox-v8';
+const CACHE_STATIC_NAME = 'static-outbox-v9';
 const STATIC_FILES = [
   './',
   './index.html',
   './styles.css',
   './db-helper.js',
+  './geo-helper.js',
   './app.js',
   './manifest.json',
   './icons/icon-192.png',
@@ -89,7 +90,8 @@ function sincronizarPendientesSW() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             title: item.titulo,
-            body: item.descripcion
+            body: item.descripcion,
+            ubicacion: item.ubicacion || null
           })
         })
           .then((respuesta) => {

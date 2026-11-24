@@ -40,12 +40,13 @@ label {
   font-size: 0.9rem;
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 10px;
   font: inherit;
+  background: #fff;
 }
 
 textarea {
@@ -87,7 +88,9 @@ button:disabled {
 }
 
 #btn-instalar,
-#btn-confirmar-permiso {
+#btn-confirmar-permiso,
+#btn-confirmar-ubicacion,
+#btn-usar-zona {
   color: #fff;
   background: #222;
 }
@@ -124,8 +127,16 @@ button:disabled {
 #btn-alternar-camara,
 #btn-apagar-camara,
 #btn-instalar,
-#btn-confirmar-permiso {
+#btn-confirmar-permiso,
+#btn-adjuntar-ubicacion,
+#btn-confirmar-ubicacion,
+#btn-usar-zona,
+#zona-manual {
   margin-top: 8px;
+}
+
+#resultado-ubicacion {
+  margin-top: 12px;
 }
 
 .header-lista {
