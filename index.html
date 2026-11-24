@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#f7f7f7">
   <title>PWA Outbox - Sincronización Offline</title>
   <link rel="icon" href="./icons/icon-192.png">
-  <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="stylesheet" href="./styles.css">
   <link rel="manifest" href="./manifest.json">
 </head>
@@ -25,79 +24,15 @@
     </section>
 
     <section class="card">
-      <h2>Ubicación del reporte</h2>
-      <p class="ayuda">
-        Se adjunta al siguiente reporte. La página no pide la ubicación al abrirse.
-      </p>
-      <button id="btn-adjuntar-ubicacion" type="button">Adjuntar mi ubicación</button>
-      <div id="aviso-permiso-geo" class="aviso" hidden>
-        <p>
-          Necesitamos tu ubicación aproximada para adjuntar las coordenadas al reporte técnico.
-          El navegador preguntará después de este aviso. Si no quieres compartirla, podrás elegir la zona a mano.
-        </p>
-        <button id="btn-confirmar-ubicacion" type="button">Compartir mi ubicación</button>
-      </div>
-      <div id="resultado-ubicacion" hidden></div>
-      <div id="selector-zona-manual" hidden>
-        <p id="ayuda-zona-manual" class="ayuda"></p>
-        <label for="zona-manual">Zona o ciudad</label>
-        <select id="zona-manual">
-          <option value="">Elige una zona</option>
-          <option value="cdmx">Ciudad de México</option>
-          <option value="gdl">Guadalajara</option>
-          <option value="mty">Monterrey</option>
-          <option value="pue">Puebla</option>
-          <option value="qro">Querétaro</option>
-        </select>
-        <button id="btn-usar-zona" type="button">Usar esta zona</button>
-      </div>
-      <p id="estado-geo" class="estado" aria-live="polite"></p>
-    </section>
-
-    <section class="card">
       <div class="header-lista">
         <h2>Bandeja de Salida</h2>
         <button id="btn-purgar" type="button">Eliminar</button>
       </div>
       <ul id="lista-outbox"></ul>
     </section>
-
-    <section class="card">
-      <h2>Instalar aplicación</h2>
-      <p class="ayuda">
-        En Chrome o Edge aparece el botón cuando el navegador ya puede instalarla.
-        En iPhone la instalación se hace desde el menú del navegador.
-      </p>
-      <button id="btn-instalar" type="button" hidden>Instalar aplicación</button>
-      <p id="instrucciones-ios" class="aviso" hidden>
-        Para instalar en iPhone, pulsa el icono Compartir y selecciona “Agregar a inicio”.
-      </p>
-    </section>
-
-    <section class="card">
-      <h2>Cámara</h2>
-      <p class="ayuda">
-        Primero lee el aviso. La vista previa se queda en este teléfono y no se envía a ningún servidor.
-      </p>
-      <video id="visor-camara" autoplay playsinline muted></video>
-      <div class="acciones-camara">
-        <button id="btn-preparar-camara" type="button">Solicitar acceso a cámara</button>
-        <button id="btn-alternar-camara" type="button">Cambiar cámara</button>
-        <button id="btn-apagar-camara" type="button">Apagar</button>
-      </div>
-      <div id="aviso-permiso" class="aviso" hidden>
-        <p>
-          Esta aplicación requiere acceso a tu cámara únicamente para mostrar una vista previa local en pantalla.
-          Ninguna imagen se envía a servidores externos. Primero se encenderá la cámara trasera.
-        </p>
-        <button id="btn-confirmar-permiso" type="button">Aceptar y encender cámara</button>
-      </div>
-      <p id="estado-camara" class="estado" aria-live="polite"></p>
-    </section>
   </main>
 
   <script src="./db-helper.js"></script>
-  <script src="./geo-helper.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

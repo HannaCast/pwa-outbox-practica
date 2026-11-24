@@ -40,13 +40,12 @@ label {
   font-size: 0.9rem;
 }
 
-input, textarea, select {
+input, textarea {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 10px;
   font: inherit;
-  background: #fff;
 }
 
 textarea {
@@ -76,67 +75,6 @@ button:disabled {
   min-height: 1.2em;
   margin: 12px 0 0;
   color: #555;
-}
-
-.ayuda {
-  margin: 8px 0 0;
-  color: #555;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-#btn-instalar,
-#btn-confirmar-permiso,
-#btn-confirmar-ubicacion,
-#btn-usar-zona {
-  color: #fff;
-  background: #222;
-}
-
-.aviso {
-  margin-top: 12px;
-  padding: 12px;
-  border: 1px solid #ead9a2;
-  border-radius: 6px;
-  background: #fff8e6;
-}
-
-.aviso p {
-  margin: 0;
-}
-
-#visor-camara {
-  width: 100%;
-  min-height: 180px;
-  margin-top: 12px;
-  background: #111;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.acciones-camara {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-#btn-preparar-camara,
-#btn-alternar-camara,
-#btn-apagar-camara,
-#btn-instalar,
-#btn-confirmar-permiso,
-#btn-adjuntar-ubicacion,
-#btn-confirmar-ubicacion,
-#btn-usar-zona,
-#zona-manual {
-  margin-top: 8px;
-}
-
-#resultado-ubicacion {
-  margin-top: 12px;
 }
 
 .header-lista {
