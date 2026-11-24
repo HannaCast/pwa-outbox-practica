@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f7f7f7">
   <title>PWA Outbox - Sincronización Offline</title>
   <link rel="icon" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="stylesheet" href="./styles.css">
   <link rel="manifest" href="./manifest.json">
 </head>
@@ -29,6 +30,39 @@
         <button id="btn-purgar" type="button">Eliminar</button>
       </div>
       <ul id="lista-outbox"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Instalar aplicación</h2>
+      <p class="ayuda">
+        En Chrome o Edge aparece el botón cuando el navegador ya puede instalarla.
+        En iPhone la instalación se hace desde el menú del navegador.
+      </p>
+      <button id="btn-instalar" type="button" hidden>Instalar aplicación</button>
+      <p id="instrucciones-ios" class="aviso" hidden>
+        Para instalar en iPhone, pulsa el icono Compartir y selecciona “Agregar a inicio”.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Cámara</h2>
+      <p class="ayuda">
+        Primero lee el aviso. La vista previa se queda en este teléfono y no se envía a ningún servidor.
+      </p>
+      <video id="visor-camara" autoplay playsinline muted></video>
+      <div class="acciones-camara">
+        <button id="btn-preparar-camara" type="button">Solicitar acceso a cámara</button>
+        <button id="btn-alternar-camara" type="button">Cambiar cámara</button>
+        <button id="btn-apagar-camara" type="button">Apagar</button>
+      </div>
+      <div id="aviso-permiso" class="aviso" hidden>
+        <p>
+          Esta aplicación requiere acceso a tu cámara únicamente para mostrar una vista previa local en pantalla.
+          Ninguna imagen se envía a servidores externos. Primero se encenderá la cámara trasera.
+        </p>
+        <button id="btn-confirmar-permiso" type="button">Aceptar y encender cámara</button>
+      </div>
+      <p id="estado-camara" class="estado" aria-live="polite"></p>
     </section>
   </main>
 

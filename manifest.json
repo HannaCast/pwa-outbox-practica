@@ -1,25 +1,25 @@
 {
   "name": "Registro de Incidencias en Campo",
   "short_name": "Outbox Campo",
-  "description": "Bandeja de salida offline con IndexedDB y Background Sync.",
+  "description": "Bandeja de salida offline y vista previa de cámara solo en el dispositivo.",
   "lang": "es",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f7f7f7",
   "theme_color": "#f7f7f7",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "./icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "./icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }

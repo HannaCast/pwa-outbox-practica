@@ -77,6 +77,57 @@ button:disabled {
   color: #555;
 }
 
+.ayuda {
+  margin: 8px 0 0;
+  color: #555;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#btn-instalar,
+#btn-confirmar-permiso {
+  color: #fff;
+  background: #222;
+}
+
+.aviso {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #ead9a2;
+  border-radius: 6px;
+  background: #fff8e6;
+}
+
+.aviso p {
+  margin: 0;
+}
+
+#visor-camara {
+  width: 100%;
+  min-height: 180px;
+  margin-top: 12px;
+  background: #111;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.acciones-camara {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#btn-preparar-camara,
+#btn-alternar-camara,
+#btn-apagar-camara,
+#btn-instalar,
+#btn-confirmar-permiso {
+  margin-top: 8px;
+}
+
 .header-lista {
   display: flex;
   justify-content: space-between;

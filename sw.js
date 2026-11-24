@@ -1,6 +1,6 @@
 importScripts('./db-helper.js');
 
-const CACHE_STATIC_NAME = 'static-outbox-v7';
+const CACHE_STATIC_NAME = 'static-outbox-v8';
 const STATIC_FILES = [
   './',
   './index.html',

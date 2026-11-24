@@ -218,8 +218,128 @@ function conectarFormulario() {
   });
 }
 
+let eventoInstalacionDiferido = null;
+let streamActual = null;
+let modoCamaraActual = 'environment';
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  eventoInstalacionDiferido = event;
+  document.getElementById('btn-instalar').hidden = false;
+});
+
+function verificarEntornoIOS() {
+  const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const estaInstalada = window.navigator.standalone === true ||
+    window.matchMedia('(display-mode: standalone)').matches;
+
+  if (esIOS && !estaInstalada) {
+    const guiaIOS = document.getElementById('instrucciones-ios');
+    if (guiaIOS) {
+      guiaIOS.hidden = false;
+    }
+  }
+}
+
+function actualizarMensajeEstado(mensaje) {
+  document.getElementById('estado-camara').textContent = mensaje;
+}
+
+function detenerCamaraActiva() {
+  if (streamActual) {
+    streamActual.getTracks().forEach((track) => {
+      track.stop();
+    });
+    streamActual = null;
+  }
+}
+
+function iniciarCamara(modo) {
+  detenerCamaraActiva();
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    actualizarMensajeEstado('Este navegador no permite usar la cámara en esta página.');
+    return Promise.resolve();
+  }
+
+  const restricciones = {
+    video: { facingMode: modo },
+    audio: false
+  };
+
+  return navigator.mediaDevices.getUserMedia(restricciones)
+    .then((stream) => {
+      streamActual = stream;
+      const visorVideo = document.getElementById('visor-camara');
+      visorVideo.srcObject = stream;
+      const nombreLente = modo === 'environment' ? 'trasera' : 'frontal';
+      actualizarMensajeEstado('Cámara activa (' + nombreLente + ').');
+    })
+    .catch((error) => {
+      if (error.name === 'NotAllowedError') {
+        actualizarMensajeEstado('Permiso denegado. Habilita el acceso a la cámara en los ajustes de tu navegador.');
+      } else if (error.name === 'NotFoundError') {
+        actualizarMensajeEstado('No se detectó el sensor de cámara solicitado en este dispositivo.');
+      } else if (error.name === 'NotReadableError') {
+        actualizarMensajeEstado('La cámara sigue ocupada. Cierra otras apps que la usen e inténtalo de nuevo.');
+      } else {
+        actualizarMensajeEstado('Error al acceder al hardware: ' + error.message);
+      }
+    });
+}
+
+function apagarCamara() {
+  detenerCamaraActiva();
+  document.getElementById('visor-camara').srcObject = null;
+  actualizarMensajeEstado('Cámara apagada. El sensor quedó libre.');
+}
+
+function conectarInstalacionYCamara() {
+  verificarEntornoIOS();
+
+  document.getElementById('btn-instalar').addEventListener('click', () => {
+    if (!eventoInstalacionDiferido) {
+      return;
+    }
+
+    eventoInstalacionDiferido.prompt();
+    eventoInstalacionDiferido.userChoice
+      .then((resultado) => {
+        if (resultado.outcome === 'accepted') {
+          document.getElementById('btn-instalar').hidden = true;
+        }
+        eventoInstalacionDiferido = null;
+      });
+  });
+
+  document.getElementById('btn-preparar-camara').addEventListener('click', () => {
+    document.getElementById('aviso-permiso').hidden = false;
+    actualizarMensajeEstado('Lee el aviso. La cámara todavía no se enciende.');
+  });
+
+  document.getElementById('btn-confirmar-permiso').addEventListener('click', () => {
+    document.getElementById('aviso-permiso').hidden = true;
+    iniciarCamara(modoCamaraActual);
+  });
+
+  document.getElementById('btn-alternar-camara').addEventListener('click', () => {
+    if (!streamActual) {
+      actualizarMensajeEstado('Primero acepta el aviso y enciende la cámara.');
+      return;
+    }
+
+    modoCamaraActual = modoCamaraActual === 'environment' ? 'user' : 'environment';
+    iniciarCamara(modoCamaraActual);
+  });
+
+  document.getElementById('btn-apagar-camara').addEventListener('click', () => {
+    apagarCamara();
+  });
+}
+
 function iniciar() {
   conectarFormulario();
+  conectarInstalacionYCamara();
 
   document.getElementById('btn-purgar').addEventListener('click', () => {
     purgarSincronizados();
